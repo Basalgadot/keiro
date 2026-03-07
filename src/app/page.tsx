@@ -1,65 +1,97 @@
-import Image from "next/image";
+import { Suspense } from "react";
+import Link from "next/link";
+import SearchBar from "@/components/busqueda/SearchBar";
+import LocationSelector from "@/components/busqueda/LocationSelector";
+import { Shield, Clock, MapPin, FileImage } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex min-h-[calc(100vh-3.5rem)] flex-col">
+      {/* Hero */}
+      <section className="flex flex-col items-center justify-center gap-8 px-4 py-16 text-center">
+        <div className="flex flex-col items-center gap-3">
+          <h1 className="max-w-lg text-3xl font-bold leading-tight text-gray-900 sm:text-4xl">
+            Compara precios de medicamentos en Chile
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="max-w-md text-base text-gray-500">
+            Encuentra el precio más barato en Cruz Verde, Salcobrand, Ahumada, Dr. Simi y más farmacias cerca de ti.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Buscador */}
+        <div className="w-full max-w-xl space-y-3">
+          <Suspense>
+            <SearchBar autoFocus />
+          </Suspense>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-gray-400">Tu comuna:</span>
+            <div className="w-52">
+              <Suspense>
+                <LocationSelector />
+              </Suspense>
+            </div>
+          </div>
         </div>
-      </main>
+
+        {/* Link escanear receta */}
+        <Link
+          href="/receta"
+          className="flex items-center gap-2 text-sm text-green-700 hover:text-green-800"
+        >
+          <FileImage className="h-4 w-4" />
+          ¿Tienes receta médica? Escanéala aquí
+        </Link>
+
+        {/* Búsquedas populares */}
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs text-gray-400">Búsquedas frecuentes</span>
+          <div className="flex flex-wrap justify-center gap-2">
+            {[
+              "Paracetamol 500mg",
+              "Ibuprofeno 400mg",
+              "Amoxicilina 500mg",
+              "Omeprazol 20mg",
+              "Loratadina 10mg",
+              "Metformina 850mg",
+            ].map((med) => (
+              <a
+                key={med}
+                href={`/buscar?q=${encodeURIComponent(med)}`}
+                className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 hover:border-green-300 hover:bg-green-50 hover:text-green-700 transition-colors"
+              >
+                {med}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Propuesta de valor */}
+      <section className="mt-auto border-t border-gray-100 bg-white px-4 py-10">
+        <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-3">
+          <div className="flex flex-col items-center gap-2 text-center">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
+              <MapPin className="h-5 w-5 text-green-600" />
+            </div>
+            <span className="text-sm font-medium text-gray-900">Por tu zona</span>
+            <span className="text-xs text-gray-500">Precios y stock filtrados por tu comuna</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 text-center">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
+              <Clock className="h-5 w-5 text-green-600" />
+            </div>
+            <span className="text-sm font-medium text-gray-900">Actualizado cada 4 horas</span>
+            <span className="text-xs text-gray-500">Precios reales de las farmacias, no estimados</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 text-center">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
+              <Shield className="h-5 w-5 text-green-600" />
+            </div>
+            <span className="text-sm font-medium text-gray-900">Genéricos aprobados ISP</span>
+            <span className="text-xs text-gray-500">Alternativas más baratas validadas por el Ministerio de Salud</span>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
