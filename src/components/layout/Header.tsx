@@ -42,8 +42,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
       <div className="mx-auto flex h-24 max-w-4xl items-center justify-between px-4">
-        <Link href="/">
-          <Image src="/logo.png" alt="Keiro" width={300} height={100} priority className="h-20 w-auto" />
+        <Link href="/" className="block bg-white">
+          <Image src="/logo.png" alt="Keiro" width={400} height={200} priority className="h-20 w-auto" />
         </Link>
 
         <nav className="flex items-center gap-4 text-sm text-gray-600">
