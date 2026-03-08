@@ -40,10 +40,10 @@ export default function Header() {
   const initials = user?.email?.[0]?.toUpperCase() ?? "?";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-4">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
+      <div className="mx-auto flex h-24 max-w-4xl items-center justify-between px-4">
         <Link href="/">
-          <Image src="/logo.png" alt="Keiro" width={160} height={56} priority className="h-12 w-auto" />
+          <Image src="/logo.png" alt="Keiro" width={300} height={100} priority className="h-20 w-auto" />
         </Link>
 
         <nav className="flex items-center gap-4 text-sm text-gray-600">
