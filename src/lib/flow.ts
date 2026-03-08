@@ -45,7 +45,6 @@ export async function createFlowPayment(
     paymentMethod: "9", // 9 = todos los métodos habilitados en tu cuenta (Khipu, Banca.me, ETPay, Mach)
     urlConfirmation: params.urlConfirmation,
     urlReturn: params.urlReturn,
-    currency: "CLP",
   };
 
   body.s = sign(body);

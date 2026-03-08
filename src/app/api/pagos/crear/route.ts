@@ -68,9 +68,9 @@ export async function POST(req: NextRequest) {
       redirectUrl: `${flowResp.url}?token=${flowResp.token}`,
     });
   } catch (err) {
-    // Si Flow falla, eliminar el pedido creado
     await supabase.from("pedidos").delete().eq("id", pedido.id);
-    console.error("[pagos/crear] Flow error:", err);
-    return NextResponse.json({ error: "Error al iniciar el pago" }, { status: 502 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[pagos/crear] Flow error:", msg);
+    return NextResponse.json({ error: msg }, { status: 502 });
   }
 }
