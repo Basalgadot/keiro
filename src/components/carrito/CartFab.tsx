@@ -13,7 +13,7 @@ export default function CartFab() {
   return (
     <Link
       href="/carrito"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-green-600 px-4 py-3 text-white shadow-lg hover:bg-green-700 transition-colors"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-keiro-500 px-4 py-3 text-white shadow-lg hover:bg-keiro-700 transition-colors"
     >
       <ShoppingCart className="h-5 w-5" />
       <span className="text-sm font-semibold">

@@ -27,7 +27,7 @@ function CallbackHandler() {
 
   return (
     <div className="flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center gap-4">
-      <Loader2 className="h-8 w-8 animate-spin text-green-600" />
+      <Loader2 className="h-8 w-8 animate-spin text-keiro-500" />
       <p className="text-sm text-gray-500">Verificando tu sesión...</p>
     </div>
   );

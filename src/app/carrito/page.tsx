@@ -55,7 +55,7 @@ export default function CarritoPage() {
         <p className="mb-6 text-sm text-gray-500">Busca medicamentos y agrégatlos aquí para hacer tu pedido.</p>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-xl bg-green-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-green-700"
+          className="inline-flex items-center gap-2 rounded-xl bg-keiro-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-keiro-700"
         >
           Buscar medicamentos
         </Link>
@@ -69,7 +69,7 @@ export default function CarritoPage() {
         <Link href="/" className="text-gray-400 hover:text-gray-600">
           <ArrowLeft className="h-5 w-5" />
         </Link>
-        <h1 className="text-xl font-bold text-gray-900">Tu carrito</h1>
+        <h1 className="text-xl font-bold text-grafito">Tu carrito</h1>
       </div>
 
       {/* Items agrupados por farmacia */}
@@ -88,27 +88,27 @@ export default function CarritoPage() {
               {grupoItems.map((item) => (
                 <div key={item.id} className="flex items-center gap-3 px-4 py-3">
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900">{item.medicamento.nombre_generico}</p>
+                    <p className="text-sm font-medium text-grafito">{item.medicamento.nombre_generico}</p>
                     {(item.medicamento.forma || item.medicamento.dosis) && (
                       <p className="text-xs text-gray-500">
                         {[item.medicamento.forma, item.medicamento.dosis].filter(Boolean).join(" · ")}
                       </p>
                     )}
-                    <p className="text-sm font-semibold text-green-700">
+                    <p className="text-sm font-semibold text-keiro-700">
                       ${(item.precio * item.cantidad).toLocaleString("es-CL")}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => updateCantidad(item.id, item.cantidad - 1)}
-                      className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50"
+                      className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-surface"
                     >
                       <Minus className="h-3 w-3" />
                     </button>
                     <span className="w-5 text-center text-sm font-medium">{item.cantidad}</span>
                     <button
                       onClick={() => updateCantidad(item.id, item.cantidad + 1)}
-                      className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50"
+                      className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-surface"
                     >
                       <Plus className="h-3 w-3" />
                     </button>
@@ -127,9 +127,9 @@ export default function CarritoPage() {
       </div>
 
       {/* Total */}
-      <div className="mb-6 flex items-center justify-between rounded-2xl bg-green-50 px-4 py-3">
+      <div className="mb-6 flex items-center justify-between rounded-2xl bg-keiro-50 px-4 py-3">
         <span className="text-sm font-medium text-gray-700">Total</span>
-        <span className="text-xl font-bold text-green-700">${total.toLocaleString("es-CL")}</span>
+        <span className="text-xl font-bold text-keiro-700">${total.toLocaleString("es-CL")}</span>
       </div>
 
       {/* Formulario de datos del pedido */}
@@ -140,28 +140,28 @@ export default function CarritoPage() {
           placeholder="Nombre completo *"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
-          className="rounded-xl border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          className="rounded-xl border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-keiro-400 focus:ring-2 focus:ring-keiro-100"
         />
         <input
           type="email"
           placeholder="Correo electrónico *"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="rounded-xl border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          className="rounded-xl border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-keiro-400 focus:ring-2 focus:ring-keiro-100"
         />
         <input
           type="tel"
           placeholder="Teléfono (opcional)"
           value={telefono}
           onChange={(e) => setTelefono(e.target.value)}
-          className="rounded-xl border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          className="rounded-xl border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-keiro-400 focus:ring-2 focus:ring-keiro-100"
         />
         <input
           type="text"
           placeholder="Dirección de despacho *"
           value={direccion}
           onChange={(e) => setDireccion(e.target.value)}
-          className="rounded-xl border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          className="rounded-xl border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-keiro-400 focus:ring-2 focus:ring-keiro-100"
         />
       </div>
 
@@ -172,7 +172,7 @@ export default function CarritoPage() {
       <button
         onClick={pagar}
         disabled={!nombre || !email || !direccion || cargando}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 py-3 text-sm font-semibold text-white hover:bg-green-700 disabled:bg-gray-200 disabled:text-gray-400 transition-colors"
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-keiro-500 py-3 text-sm font-semibold text-white hover:bg-keiro-700 disabled:bg-gray-200 disabled:text-gray-400 transition-colors"
       >
         {cargando ? (
           <>

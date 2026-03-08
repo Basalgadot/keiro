@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${geist.variable} font-sans antialiased bg-gray-50 text-gray-900`}>
+      <body className={`${geist.variable} font-sans antialiased bg-surface text-grafito`}>
         <Header />
         <main>{children}</main>
         <CartFab />

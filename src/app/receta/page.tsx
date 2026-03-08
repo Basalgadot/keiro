@@ -139,9 +139,9 @@ export default function RecetaPage() {
   if (estado === "procesando") {
     return (
       <div className="flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center gap-6 px-4">
-        <Loader2 className="h-12 w-12 animate-spin text-green-600" />
+        <Loader2 className="h-12 w-12 animate-spin text-keiro-500" />
         <div className="text-center">
-          <p className="text-lg font-semibold text-gray-900">Leyendo tu receta...</p>
+          <p className="text-lg font-semibold text-grafito">Leyendo tu receta...</p>
           <p className="mt-1 text-sm text-gray-500">
             La IA está identificando los medicamentos. Toma unos segundos.
           </p>
@@ -158,12 +158,12 @@ export default function RecetaPage() {
           <AlertTriangle className="h-8 w-8 text-red-600" />
         </div>
         <div className="text-center">
-          <p className="text-lg font-semibold text-gray-900">No pudimos leer la receta</p>
+          <p className="text-lg font-semibold text-grafito">No pudimos leer la receta</p>
           <p className="mt-1 max-w-xs text-sm text-gray-500">{errorMsg}</p>
         </div>
         <button
           onClick={reiniciar}
-          className="flex items-center gap-2 rounded-lg bg-green-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-green-700"
+          className="flex items-center gap-2 rounded-lg bg-keiro-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-keiro-700"
         >
           <RotateCcw className="h-4 w-4" />
           Intentar de nuevo
@@ -178,7 +178,7 @@ export default function RecetaPage() {
       <div className="mx-auto max-w-lg px-4 py-8">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold text-gray-900">Medicamentos detectados</h1>
+            <h1 className="text-xl font-bold text-grafito">Medicamentos detectados</h1>
             <p className="text-sm text-gray-500">
               {receta.medicamentos.length === 1
                 ? "1 medicamento"
@@ -228,7 +228,7 @@ export default function RecetaPage() {
                       value={editState.nombre}
                       onChange={(e) => setEditState({ ...editState, nombre: e.target.value })}
                       placeholder="Nombre del medicamento"
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-keiro-400 focus:ring-2 focus:ring-keiro-100"
                     />
                     <div className="flex gap-2">
                       <input
@@ -236,12 +236,12 @@ export default function RecetaPage() {
                         value={editState.valor}
                         onChange={(e) => setEditState({ ...editState, valor: e.target.value })}
                         placeholder="Dosis"
-                        className="w-24 rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+                        className="w-24 rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-keiro-400 focus:ring-2 focus:ring-keiro-100"
                       />
                       <select
                         value={editState.unidad}
                         onChange={(e) => setEditState({ ...editState, unidad: e.target.value })}
-                        className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-green-500"
+                        className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-keiro-400"
                       >
                         {["mg", "mcg", "g", "ml", "UI", "%"].map((u) => (
                           <option key={u} value={u}>{u}</option>
@@ -251,13 +251,13 @@ export default function RecetaPage() {
                     <div className="flex gap-2 pt-1">
                       <button
                         onClick={() => guardarEdicion(i)}
-                        className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-green-600 py-2 text-sm font-medium text-white hover:bg-green-700"
+                        className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-keiro-500 py-2 text-sm font-medium text-white hover:bg-keiro-700"
                       >
                         <Check className="h-4 w-4" /> Guardar
                       </button>
                       <button
                         onClick={() => setEditando(null)}
-                        className="flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                        className="flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 px-4 py-2 text-sm text-gray-600 hover:bg-surface"
                       >
                         <X className="h-4 w-4" /> Cancelar
                       </button>
@@ -268,7 +268,7 @@ export default function RecetaPage() {
                   <>
                     <div className="flex items-start justify-between gap-2">
                       <div className="min-w-0 flex-1">
-                        <p className="font-semibold leading-tight text-gray-900">
+                        <p className="font-semibold leading-tight text-grafito">
                           {med.nombre_normalizado}
                         </p>
                         {med.concentracion.valor && (
@@ -300,7 +300,7 @@ export default function RecetaPage() {
                     </div>
                     <Link
                       href={`/buscar?q=${encodeURIComponent(query)}`}
-                      className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-green-700"
+                      className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-keiro-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-keiro-700"
                     >
                       Buscar precios
                       <ArrowRight className="h-4 w-4" />
@@ -329,10 +329,10 @@ export default function RecetaPage() {
       />
 
       <div className="flex flex-col items-center gap-3 text-center">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
-          <FileImage className="h-10 w-10 text-green-600" />
+        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-keiro-100">
+          <FileImage className="h-10 w-10 text-keiro-500" />
         </div>
-        <h1 className="text-2xl font-bold text-gray-900">Escanear receta</h1>
+        <h1 className="text-2xl font-bold text-grafito">Escanear receta</h1>
         <p className="max-w-xs text-sm text-gray-500">
           Toma una foto de tu receta médica o sube un archivo, y la IA detectará los
           medicamentos automáticamente.
@@ -342,14 +342,14 @@ export default function RecetaPage() {
       <div className="flex w-full max-w-xs flex-col gap-3">
         <button
           onClick={abrirCamara}
-          className="flex items-center justify-center gap-3 rounded-xl bg-green-600 px-6 py-4 text-base font-semibold text-white shadow-sm transition-transform hover:bg-green-700 active:scale-95"
+          className="flex items-center justify-center gap-3 rounded-xl bg-keiro-500 px-6 py-4 text-base font-semibold text-white shadow-sm transition-transform hover:bg-keiro-700 active:scale-95"
         >
           <Camera className="h-5 w-5" />
           Tomar foto de la receta
         </button>
         <button
           onClick={abrirArchivo}
-          className="flex items-center justify-center gap-3 rounded-xl border-2 border-gray-200 bg-white px-6 py-4 text-base font-semibold text-gray-700 transition-transform hover:border-green-300 hover:text-green-700 active:scale-95"
+          className="flex items-center justify-center gap-3 rounded-xl border-2 border-gray-200 bg-white px-6 py-4 text-base font-semibold text-gray-700 transition-transform hover:border-keiro-200 hover:text-keiro-700 active:scale-95"
         >
           <Upload className="h-5 w-5" />
           Subir imagen o PDF

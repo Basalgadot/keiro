@@ -49,7 +49,7 @@ export default async function BuscarPage({ searchParams }: Props) {
       {/* Resultado */}
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h1 className="text-base font-semibold text-gray-900">
+          <h1 className="text-base font-semibold text-grafito">
             {q}
           </h1>
           <p className="text-xs text-gray-500">
@@ -60,7 +60,7 @@ export default async function BuscarPage({ searchParams }: Props) {
         {resultados.length > 0 && (
           <div className="text-right">
             <p className="text-xs text-gray-400">Precio más bajo</p>
-            <p className="text-lg font-bold text-green-700">
+            <p className="text-lg font-bold text-keiro-700">
               ${Math.min(...resultados.map((r) => r.precio)).toLocaleString("es-CL")}
             </p>
           </div>

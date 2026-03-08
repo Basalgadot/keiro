@@ -98,10 +98,10 @@ export default function AuthPage() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="mb-8 flex flex-col items-center gap-2 text-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-600">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-keiro-500">
             <Pill className="h-6 w-6 text-white" />
           </div>
-          <h1 className="text-xl font-bold text-gray-900">Keiro</h1>
+          <h1 className="text-xl font-bold text-grafito">Keiro</h1>
           <p className="text-sm text-gray-500">
             Guarda tus recetas y compara precios de forma segura
           </p>
@@ -111,13 +111,13 @@ export default function AuthPage() {
         <div className="mb-6 flex rounded-lg bg-gray-100 p-1">
           <button
             onClick={() => changeTab("login")}
-            className={`flex-1 rounded-md py-2 text-sm font-medium transition-colors ${tab === "login" ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
+            className={`flex-1 rounded-md py-2 text-sm font-medium transition-colors ${tab === "login" ? "bg-white text-grafito shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
           >
             Iniciar sesión
           </button>
           <button
             onClick={() => changeTab("register")}
-            className={`flex-1 rounded-md py-2 text-sm font-medium transition-colors ${tab === "register" ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
+            className={`flex-1 rounded-md py-2 text-sm font-medium transition-colors ${tab === "register" ? "bg-white text-grafito shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
           >
             Crear cuenta
           </button>
@@ -128,7 +128,7 @@ export default function AuthPage() {
           <button
             onClick={() => handleOAuth("google")}
             disabled={!!oauthLoading}
-            className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface disabled:opacity-60"
           >
             <GoogleIcon />
             {oauthLoading === "google" ? "Redirigiendo..." : "Continuar con Google"}
@@ -136,7 +136,7 @@ export default function AuthPage() {
           <button
             onClick={() => handleOAuth("facebook")}
             disabled={!!oauthLoading}
-            className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-surface disabled:opacity-60"
           >
             <FacebookIcon />
             {oauthLoading === "facebook" ? "Redirigiendo..." : "Continuar con Facebook"}
@@ -157,7 +157,7 @@ export default function AuthPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+            className="w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm outline-none focus:border-keiro-400 focus:ring-2 focus:ring-keiro-100"
           />
           <div className="relative">
             <input
@@ -167,7 +167,7 @@ export default function AuthPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={6}
-              className="w-full rounded-lg border border-gray-300px-3.5 py-2.5 pl-3.5 pr-10 text-sm outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+              className="w-full rounded-lg border border-gray-300px-3.5 py-2.5 pl-3.5 pr-10 text-sm outline-none focus:border-keiro-400 focus:ring-2 focus:ring-keiro-100"
             />
             <button
               type="button"
@@ -179,12 +179,12 @@ export default function AuthPage() {
           </div>
 
           {error && <p className="text-sm text-red-600">{error}</p>}
-          {success && <p className="text-sm text-green-700">{success}</p>}
+          {success && <p className="text-sm text-keiro-700">{success}</p>}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-green-600 py-2.5 text-sm font-semibold text-white hover:bg-green-700 disabled:opacity-60"
+            className="w-full rounded-lg bg-keiro-500 py-2.5 text-sm font-semibold text-white hover:bg-keiro-700 disabled:opacity-60"
           >
             {loading ? "..." : tab === "login" ? "Iniciar sesión" : "Crear cuenta"}
           </button>
@@ -194,7 +194,7 @@ export default function AuthPage() {
           <p className="mt-4 text-center text-xs text-gray-500">
             <button
               onClick={handlePasswordReset}
-              className="text-green-700 hover:underline"
+              className="text-keiro-700 hover:underline"
             >
               ¿Olvidaste tu contraseña?
             </button>

@@ -35,7 +35,7 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
+  --color-popover: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --radius-sm: calc(var(--radius) - 4px);
@@ -45,29 +45,50 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Paleta Keiro */
+  --color-keiro-50: #e6f7fd;
+  --color-keiro-100: #b3e8fb;
+  --color-keiro-200: #80d9f8;
+  --color-keiro-300: #4dcaf5;
+  --color-keiro-400: #26bef2;
+  --color-keiro-500: #00AEEF;
+  --color-keiro-600: #009fd8;
+  --color-keiro-700: #0088b8;
+  --color-keiro-800: #006e96;
+  --color-keiro-900: #004d6a;
+
+  --color-oferta-50: #fff4e0;
+  --color-oferta-100: #ffdea8;
+  --color-oferta-500: #FF8C00;
+  --color-oferta-600: #e67e00;
+  --color-oferta-700: #cc6f00;
+
+  --color-surface: #F4F7F9;
+  --color-grafito: #2D3436;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.2 0 0);
+  --background: #F4F7F9;
+  --foreground: #2D3436;
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0 0);
+  --card-foreground: #2D3436;
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0 0);
-  /* Verde Keiro — identidad visual */
-  --primary: oklch(0.45 0.16 155);
+  --popover-foreground: #2D3436;
+  /* Azul Keiro — identidad visual */
+  --primary: #00AEEF;
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0.02 155);
-  --secondary-foreground: oklch(0.45 0.16 155);
+  --secondary: #e6f7fd;
+  --secondary-foreground: #0088b8;
   --muted: oklch(0.96 0 0);
   --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.94 0.04 155);
-  --accent-foreground: oklch(0.35 0.14 155);
+  --accent: #e6f7fd;
+  --accent-foreground: #0088b8;
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.9 0 0);
   --input: oklch(0.9 0 0);
-  --ring: oklch(0.45 0.16 155);
+  --ring: #00AEEF;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -122,6 +143,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-surface text-grafito;
   }
 }

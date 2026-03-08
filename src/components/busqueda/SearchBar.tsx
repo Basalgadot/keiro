@@ -78,7 +78,7 @@ export default function SearchBar({ initialValue = "", autoFocus = false }: Sear
 
   return (
     <div className="relative w-full">
-      <div className="flex items-center rounded-xl border border-gray-200 bg-white shadow-sm focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-100">
+      <div className="flex items-center rounded-xl border border-gray-200 bg-white shadow-sm focus-within:border-keiro-400 focus-within:ring-2 focus-within:ring-keiro-100">
         <Search className="ml-3 h-4 w-4 shrink-0 text-gray-400" />
         <input
           ref={inputRef}
@@ -99,7 +99,7 @@ export default function SearchBar({ initialValue = "", autoFocus = false }: Sear
         )}
         <button
           onClick={() => buscar(query)}
-          className="mr-1 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 transition-colors"
+          className="mr-1 rounded-lg bg-keiro-500 px-4 py-2 text-sm font-medium text-white hover:bg-keiro-700 transition-colors"
         >
           Buscar
         </button>
@@ -114,9 +114,9 @@ export default function SearchBar({ initialValue = "", autoFocus = false }: Sear
                 setQuery(s.nombre_generico);
                 buscar(s.nombre_generico);
               }}
-              className="flex w-full flex-col px-4 py-3 text-left hover:bg-gray-50 first:rounded-t-xl last:rounded-b-xl"
+              className="flex w-full flex-col px-4 py-3 text-left hover:bg-surface first:rounded-t-xl last:rounded-b-xl"
             >
-              <span className="text-sm font-medium text-gray-900">{s.nombre_generico}</span>
+              <span className="text-sm font-medium text-grafito">{s.nombre_generico}</span>
               {(s.nombre_comercial || s.forma || s.dosis) && (
                 <span className="text-xs text-gray-500">
                   {[s.nombre_comercial, s.forma, s.dosis].filter(Boolean).join(" · ")}

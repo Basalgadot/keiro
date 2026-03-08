@@ -33,11 +33,11 @@ export default function PriceCard({ resultado, esMasBarato }: PriceCardProps) {
   return (
     <div
       className={`relative flex flex-col gap-3 rounded-2xl border bg-white p-4 shadow-sm transition-shadow hover:shadow-md ${
-        esMasBarato ? "border-green-300 ring-1 ring-green-200" : "border-gray-100"
+        esMasBarato ? "border-keiro-200 ring-1 ring-keiro-200" : "border-gray-100"
       }`}
     >
       {esMasBarato && (
-        <span className="absolute -top-2.5 left-4 flex items-center gap-1 rounded-full bg-green-600 px-2 py-0.5 text-xs font-medium text-white">
+        <span className="absolute -top-2.5 left-4 flex items-center gap-1 rounded-full bg-keiro-500 px-2 py-0.5 text-xs font-medium text-white">
           <TrendingDown className="h-3 w-3" />
           Más barato
         </span>
@@ -46,7 +46,7 @@ export default function PriceCard({ resultado, esMasBarato }: PriceCardProps) {
       {/* Fila superior: farmacia + precio */}
       <div className="flex items-start justify-between">
         <div className="flex flex-col gap-1">
-          <span className="text-sm font-semibold text-gray-900">
+          <span className="text-sm font-semibold text-grafito">
             {CADENA_LABEL[farmacia.cadena as keyof typeof CADENA_LABEL] ?? farmacia.nombre}
           </span>
           <span className="text-xs text-gray-500">{farmacia.direccion ?? comuna?.nombre ?? "Online"}</span>
@@ -72,7 +72,7 @@ export default function PriceCard({ resultado, esMasBarato }: PriceCardProps) {
         </div>
 
         <div className="flex flex-col items-end gap-1">
-          <span className="text-xl font-bold text-gray-900">
+          <span className="text-xl font-bold text-grafito">
             ${precio.toLocaleString("es-CL")}
           </span>
           {tieneDescuento && (
@@ -80,7 +80,7 @@ export default function PriceCard({ resultado, esMasBarato }: PriceCardProps) {
               <span className="text-xs text-gray-400 line-through">
                 ${precio_normal!.toLocaleString("es-CL")}
               </span>
-              <span className="rounded-full bg-orange-100 px-1.5 py-0.5 text-xs font-medium text-orange-700">
+              <span className="rounded-full bg-oferta-50 px-1.5 py-0.5 text-xs font-medium text-oferta-700">
                 -{descuentoPct}%
               </span>
             </div>
@@ -95,10 +95,10 @@ export default function PriceCard({ resultado, esMasBarato }: PriceCardProps) {
           disabled={!stock_disponible}
           className={`flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
             agregado
-              ? "bg-green-100 text-green-700"
+              ? "bg-keiro-100 text-keiro-700"
               : enCarrito
-              ? "bg-green-50 text-green-700 border border-green-200"
-              : "bg-green-600 text-white hover:bg-green-700 disabled:bg-gray-100 disabled:text-gray-400"
+              ? "bg-keiro-50 text-keiro-700 border border-keiro-200"
+              : "bg-keiro-500 text-white hover:bg-keiro-700 disabled:bg-gray-100 disabled:text-gray-400"
           }`}
         >
           {agregado ? (
@@ -119,7 +119,7 @@ export default function PriceCard({ resultado, esMasBarato }: PriceCardProps) {
             href={farmacia.url_compra}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+            className="flex items-center gap-1 rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-600 hover:bg-surface transition-colors"
           >
             <ExternalLink className="h-3.5 w-3.5" />
             Ver

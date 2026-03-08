@@ -30,7 +30,7 @@ function RetornoContent() {
   if (estado === "cargando") {
     return (
       <div className="flex flex-col items-center gap-3 py-16">
-        <Loader2 className="h-10 w-10 animate-spin text-green-600" />
+        <Loader2 className="h-10 w-10 animate-spin text-keiro-500" />
         <p className="text-sm text-gray-500">Verificando tu pago...</p>
       </div>
     );
@@ -39,14 +39,14 @@ function RetornoContent() {
   if (estado === "pagado") {
     return (
       <div className="flex flex-col items-center gap-4 py-16 text-center">
-        <CheckCircle className="h-16 w-16 text-green-500" />
-        <h1 className="text-2xl font-bold text-gray-900">¡Pago exitoso!</h1>
+        <CheckCircle className="h-16 w-16 text-keiro-400" />
+        <h1 className="text-2xl font-bold text-grafito">¡Pago exitoso!</h1>
         <p className="max-w-sm text-sm text-gray-500">
           Tu pedido fue recibido y lo estamos procesando. Te enviaremos un correo con la confirmación y el seguimiento.
         </p>
         <Link
           href="/"
-          className="mt-2 rounded-xl bg-green-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-green-700"
+          className="mt-2 rounded-xl bg-keiro-500 px-6 py-2.5 text-sm font-medium text-white hover:bg-keiro-700"
         >
           Volver al inicio
         </Link>
@@ -58,13 +58,13 @@ function RetornoContent() {
     return (
       <div className="flex flex-col items-center gap-4 py-16 text-center">
         <XCircle className="h-16 w-16 text-red-400" />
-        <h1 className="text-2xl font-bold text-gray-900">Pago no completado</h1>
+        <h1 className="text-2xl font-bold text-grafito">Pago no completado</h1>
         <p className="max-w-sm text-sm text-gray-500">
           El pago fue rechazado o cancelado. Tu carrito sigue guardado, puedes intentarlo nuevamente.
         </p>
         <Link
           href="/carrito"
-          className="mt-2 rounded-xl bg-green-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-green-700"
+          className="mt-2 rounded-xl bg-keiro-500 px-6 py-2.5 text-sm font-medium text-white hover:bg-keiro-700"
         >
           Volver al carrito
         </Link>
@@ -76,13 +76,13 @@ function RetornoContent() {
   return (
     <div className="flex flex-col items-center gap-4 py-16 text-center">
       <Clock className="h-16 w-16 text-yellow-400" />
-      <h1 className="text-2xl font-bold text-gray-900">Pago en proceso</h1>
+      <h1 className="text-2xl font-bold text-grafito">Pago en proceso</h1>
       <p className="max-w-sm text-sm text-gray-500">
         Tu pago está siendo procesado. Te notificaremos por correo cuando se confirme.
       </p>
       <Link
         href="/"
-        className="mt-2 rounded-xl bg-green-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-green-700"
+        className="mt-2 rounded-xl bg-keiro-500 px-6 py-2.5 text-sm font-medium text-white hover:bg-keiro-700"
       >
         Volver al inicio
       </Link>
@@ -95,7 +95,7 @@ export default function RetornoPage() {
     <div className="mx-auto max-w-lg px-4">
       <Suspense fallback={
         <div className="flex justify-center py-16">
-          <Loader2 className="h-8 w-8 animate-spin text-green-600" />
+          <Loader2 className="h-8 w-8 animate-spin text-keiro-500" />
         </div>
       }>
         <RetornoContent />

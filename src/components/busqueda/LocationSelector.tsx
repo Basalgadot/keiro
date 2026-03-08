@@ -39,8 +39,8 @@ export default function LocationSelector() {
 
   return (
     <div className="relative">
-      <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 shadow-sm focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-100">
-        <MapPin className="h-4 w-4 shrink-0 text-green-600" />
+      <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 shadow-sm focus-within:border-keiro-400 focus-within:ring-2 focus-within:ring-keiro-100">
+        <MapPin className="h-4 w-4 shrink-0 text-keiro-500" />
         <input
           type="text"
           value={input}
@@ -57,7 +57,7 @@ export default function LocationSelector() {
             <button
               key={c}
               onClick={() => seleccionar(c)}
-              className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm hover:bg-gray-50 first:rounded-t-xl last:rounded-b-xl"
+              className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm hover:bg-surface first:rounded-t-xl last:rounded-b-xl"
             >
               <MapPin className="h-3.5 w-3.5 text-gray-400" />
               {c}

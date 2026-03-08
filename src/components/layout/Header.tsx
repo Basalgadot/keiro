@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { Pill, LogOut, User } from "lucide-react";
+import { LogOut, User } from "lucide-react";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
 import { getSupabaseClient } from "@/lib/supabase";
 
@@ -41,18 +42,17 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 font-semibold text-green-700">
-          <Pill className="h-5 w-5" />
-          <span className="text-lg tracking-tight">Keiro</span>
+        <Link href="/">
+          <Image src="/logo.png" alt="Keiro" width={100} height={36} priority className="h-9 w-auto" />
         </Link>
 
         <nav className="flex items-center gap-4 text-sm text-gray-600">
           {!isHome && (
-            <Link href="/" className="hover:text-green-700 transition-colors">
+            <Link href="/" className="hover:text-keiro-700 transition-colors">
               Buscar
             </Link>
           )}
-          <Link href="/receta" className="font-medium hover:text-green-700 transition-colors">
+          <Link href="/receta" className="font-medium hover:text-keiro-700 transition-colors">
             Escanear receta
           </Link>
 
@@ -60,7 +60,7 @@ export default function Header() {
             <div className="relative">
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-green-600 text-xs font-bold text-white hover:bg-green-700"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-keiro-500 text-xs font-bold text-white hover:bg-keiro-700"
               >
                 {initials}
               </button>
@@ -73,7 +73,7 @@ export default function Header() {
                   <div className="absolute right-0 z-20 mt-2 w-52 rounded-xl border border-gray-100 bg-white py-1 shadow-lg">
                     <div className="border-b border-gray-100 px-4 py-2.5">
                       <p className="text-xs text-gray-400">Conectado como</p>
-                      <p className="truncate text-sm font-medium text-gray-900">{user.email}</p>
+                      <p className="truncate text-sm font-medium text-grafito">{user.email}</p>
                     </div>
                     <button
                       onClick={handleLogout}
@@ -89,7 +89,7 @@ export default function Header() {
           ) : (
             <Link
               href="/auth"
-              className="flex items-center gap-1.5 rounded-lg bg-green-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-green-700"
+              className="flex items-center gap-1.5 rounded-lg bg-keiro-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-keiro-700"
             >
               <User className="h-3.5 w-3.5" />
               Entrar
