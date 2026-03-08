@@ -52,7 +52,7 @@ export default function Header() {
               Buscar
             </Link>
           )}
-          <Link href="/receta" className="font-medium hover:text-keiro-700 transition-colors">
+          <Link href="/receta" className="flex items-center gap-1.5 rounded-lg bg-keiro-100 px-3 py-1.5 text-sm font-medium text-keiro-700 hover:bg-keiro-200 transition-colors">
             Escanear receta
           </Link>
 
