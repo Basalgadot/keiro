@@ -10,6 +10,7 @@ import { scrapeCV } from "./scrapers/cruz-verde.js";
 import { scrapeSalcobrand } from "./scrapers/salcobrand.js";
 import { scrapeAhumada } from "./scrapers/ahumada.js";
 import { scrapeDrSimi } from "./scrapers/dr-simi.js";
+import { closeBrowser } from "./scrapers/browser.js";
 import type { PrecioScrapeado } from "./scrapers/types.js";
 
 const SCRAPERS: Record<string, (q: string) => Promise<PrecioScrapeado[]>> = {
@@ -105,6 +106,7 @@ async function main() {
   }
 
   console.log(`=== Sync completado: ${actualizados} precios actualizados, ${errores} errores`);
+  await closeBrowser();
 }
 
 main();
