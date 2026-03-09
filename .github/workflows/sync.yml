@@ -1,0 +1,41 @@
+name: Sync datos diario
+
+on:
+  schedule:
+    # 6:00 UTC = 3:00am Chile (UTC-3)
+    - cron: "0 6 * * *"
+  workflow_dispatch: # permite correr manualmente desde GitHub Actions
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Instalar dependencias
+        run: npm ci --include=dev
+
+      # ─── Paso 1: Catálogo ISP ───────────────────────────────────────────
+      # Solo se ejecuta si ISP_DATA_URL está configurado en los Secrets del repo
+      - name: Sync catálogo ISP
+        if: env.ISP_DATA_URL != ''
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          ISP_DATA_URL: ${{ secrets.ISP_DATA_URL }}
+        run: npx tsx scripts/sync-isp.ts
+
+      # ─── Paso 2: Precios de farmacias ──────────────────────────────────
+      - name: Sync precios farmacias
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npx tsx scripts/sync-precios.ts
