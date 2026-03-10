@@ -1,9 +1,11 @@
 /**
- * Scraper Cruz Verde — VTEX infrastructure endpoint
- * Usa el dominio VTEX directo para evitar CDN/SSL issues del dominio custom.
- * Account name VTEX: "cruzverdefarmacia"
+ * Scraper Cruz Verde — VTEX
+ * Account name VTEX: "cruzverdefarmacia" (por confirmar — timeout incluso con ScraperAPI).
+ * www.cruzverde.cl puede ser que use un account VTEX diferente.
+ * TODO: Inspeccionar HTML de cruzverde.cl para confirmar el account name correcto.
  */
 import type { PrecioScrapeado } from "./types.js";
+import { fetchProxy } from "./fetch-proxy.js";
 
 const VTEX_ACCOUNT = "cruzverdefarmacia";
 const BASE = `https://${VTEX_ACCOUNT}.vtexcommercestable.com.br`;
@@ -23,14 +25,7 @@ interface VtexProduct {
 export async function scrapeCV(query: string): Promise<PrecioScrapeado[]> {
   const url = `${BASE}/api/catalog_system/pub/products/search/${encodeURIComponent(query)}?_from=0&_to=5`;
 
-  const res = await fetch(url, {
-    headers: {
-      "User-Agent": "Mozilla/5.0 (compatible; KeiroPriceBot/1.0)",
-      Accept: "application/json",
-      "X-VTEX-API-AppKey": "",
-    },
-    signal: AbortSignal.timeout(15_000),
-  });
+  const res = await fetchProxy(url);
 
   if (!res.ok) {
     console.warn(`[cruz-verde] HTTP ${res.status} para "${query}"`);

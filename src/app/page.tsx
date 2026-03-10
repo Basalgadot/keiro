@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import SearchBar from "@/components/busqueda/SearchBar";
 import LocationSelector from "@/components/busqueda/LocationSelector";
-import { Shield, Clock, MapPin, FileImage } from "lucide-react";
+import { Shield, Clock, MapPin, FileImage, ShoppingCart } from "lucide-react";
 
 export default function Home() {
   return (
@@ -11,10 +11,10 @@ export default function Home() {
       <section className="flex flex-col items-center justify-center gap-8 px-4 py-16 text-center">
         <div className="flex flex-col items-center gap-3">
           <h1 className="max-w-lg text-3xl font-bold leading-tight text-grafito sm:text-4xl">
-            Compara precios de medicamentos en Chile
+            Compara precios de medicamentos y suplementos en Chile
           </h1>
           <p className="max-w-md text-base text-gray-500">
-            Encuentra el precio más barato en Cruz Verde, Salcobrand, Ahumada, Dr. Simi y más farmacias cerca de ti.
+            Encuentra el mejor precio en farmacias, MercadoLibre y más tiendas. Medicamentos, proteínas, vitaminas, magnesio y mucho más.
           </p>
         </div>
 
@@ -43,32 +43,55 @@ export default function Home() {
         </Link>
 
         {/* Búsquedas populares */}
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs text-gray-400">Búsquedas frecuentes</span>
-          <div className="flex flex-wrap justify-center gap-2">
-            {[
-              "Paracetamol 500mg",
-              "Ibuprofeno 400mg",
-              "Amoxicilina 500mg",
-              "Omeprazol 20mg",
-              "Loratadina 10mg",
-              "Metformina 850mg",
-            ].map((med) => (
-              <a
-                key={med}
-                href={`/buscar?q=${encodeURIComponent(med)}`}
-                className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 hover:border-keiro-200 hover:bg-keiro-50 hover:text-keiro-700 transition-colors"
-              >
-                {med}
-              </a>
-            ))}
+        <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-xs text-gray-400">Medicamentos frecuentes</span>
+            <div className="flex flex-wrap justify-center gap-2">
+              {[
+                "Paracetamol 500mg",
+                "Ibuprofeno 400mg",
+                "Amoxicilina 500mg",
+                "Omeprazol 20mg",
+                "Loratadina 10mg",
+                "Metformina 850mg",
+              ].map((med) => (
+                <a
+                  key={med}
+                  href={`/buscar?q=${encodeURIComponent(med)}`}
+                  className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 hover:border-keiro-200 hover:bg-keiro-50 hover:text-keiro-700 transition-colors"
+                >
+                  {med}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-xs text-gray-400">Suplementos populares</span>
+            <div className="flex flex-wrap justify-center gap-2">
+              {[
+                "Proteína whey",
+                "Magnesio 400mg",
+                "Vitamina D3",
+                "Omega 3",
+                "Creatina",
+                "Vitamina C 1000mg",
+              ].map((sup) => (
+                <a
+                  key={sup}
+                  href={`/buscar?q=${encodeURIComponent(sup)}`}
+                  className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs text-emerald-700 hover:border-emerald-300 hover:bg-emerald-100 transition-colors"
+                >
+                  {sup}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Propuesta de valor */}
       <section className="mt-auto border-t border-gray-100 bg-white px-4 py-10">
-        <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-3">
+        <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-4">
           <div className="flex flex-col items-center gap-2 text-center">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-keiro-100">
               <MapPin className="h-5 w-5 text-keiro-500" />
@@ -80,8 +103,15 @@ export default function Home() {
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-keiro-100">
               <Clock className="h-5 w-5 text-keiro-500" />
             </div>
-            <span className="text-sm font-medium text-grafito">Actualizado cada 4 horas</span>
-            <span className="text-xs text-gray-500">Precios reales de las farmacias, no estimados</span>
+            <span className="text-sm font-medium text-grafito">Actualizado diariamente</span>
+            <span className="text-xs text-gray-500">Precios reales de tiendas y farmacias</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 text-center">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-keiro-100">
+              <ShoppingCart className="h-5 w-5 text-keiro-500" />
+            </div>
+            <span className="text-sm font-medium text-grafito">Múltiples tiendas</span>
+            <span className="text-xs text-gray-500">Farmacias, MercadoLibre y más comercios</span>
           </div>
           <div className="flex flex-col items-center gap-2 text-center">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-keiro-100">

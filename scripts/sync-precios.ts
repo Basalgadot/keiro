@@ -7,15 +7,19 @@
  */
 import { db } from "./db.js";
 import { scrapeDrSimi } from "./scrapers/dr-simi.js";
-// Cruz Verde, Salcobrand y Ahumada bloquean tráfico externo — pendiente solución
-// import { scrapeCV } from "./scrapers/cruz-verde.js";
-// import { scrapeSalcobrand } from "./scrapers/salcobrand.js";
-// import { scrapeAhumada } from "./scrapers/ahumada.js";
+import { scrapeMercadoLibre } from "./scrapers/mercadolibre.js";
+import { scrapeCV } from "./scrapers/cruz-verde.js";
+import { scrapeSalcobrand } from "./scrapers/salcobrand.js";
+import { scrapeAhumada } from "./scrapers/ahumada.js";
 import type { PrecioScrapeado } from "./scrapers/types.js";
 
 const SCRAPERS: Record<string, (q: string) => Promise<PrecioScrapeado[]>> = {
   drsimi: scrapeDrSimi,
-  // Cruz Verde, Salcobrand y Ahumada: pendiente de acceso
+  mercadolibre: scrapeMercadoLibre,
+  // Cruz Verde, Salcobrand y Ahumada funcionan vía ScraperAPI (requiere SCRAPER_API_KEY)
+  cruzverdefarmacia: scrapeCV,
+  salcobrand: scrapeSalcobrand,
+  ahumada: scrapeAhumada,
 };
 
 /** Pausa entre requests para no saturar los servidores */

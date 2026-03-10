@@ -38,4 +38,7 @@ jobs:
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
+          MERCADOLIBRE_APP_ID: ${{ secrets.MERCADOLIBRE_APP_ID }}
+          MERCADOLIBRE_SECRET_KEY: ${{ secrets.MERCADOLIBRE_SECRET_KEY }}
         run: npx tsx scripts/sync-precios.ts

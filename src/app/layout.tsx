@@ -10,9 +10,9 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Keiro — Compara precios de medicamentos en Chile",
+  title: "Keiro — Compara precios de medicamentos y suplementos en Chile",
   description:
-    "Compara precios reales de medicamentos en Cruz Verde, Salcobrand, Ahumada, Dr. Simi y más farmacias de Chile. Ahorra en tus remedios.",
+    "Compara precios reales de medicamentos y suplementos alimenticios en farmacias, MercadoLibre y más tiendas de Chile. Proteínas, vitaminas, magnesio y mucho más.",
 };
 
 export default function RootLayout({

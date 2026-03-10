@@ -70,7 +70,7 @@ export default async function BuscarPage({ searchParams }: Props) {
       <PriceList resultados={resultados} />
 
       <p className="mt-6 text-center text-xs text-gray-400">
-        Precios actualizados periódicamente. Verifica el precio final en la farmacia.
+        Precios actualizados periódicamente. Verifica el precio final en la tienda o farmacia.
       </p>
     </div>
   );
