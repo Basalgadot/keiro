@@ -23,9 +23,6 @@ jobs:
       - name: Instalar dependencias
         run: npm ci --include=dev
 
-      - name: Instalar Chromium (Playwright)
-        run: npx playwright install --with-deps chromium
-
       # ─── Paso 1: Catálogo ISP ───────────────────────────────────────────
       # Solo se ejecuta si ISP_DATA_URL está configurado en los Secrets del repo
       - name: Sync catálogo ISP

@@ -1,98 +1,57 @@
 /**
- * Scraper Cruz Verde — Playwright con intercepción de red
- * Navega a la página de búsqueda y captura la respuesta JSON del API interno.
+ * Scraper Cruz Verde — VTEX infrastructure endpoint
+ * Usa el dominio VTEX directo para evitar CDN/SSL issues del dominio custom.
+ * Account name VTEX: "cruzverdefarmacia"
  */
-import { newContext } from "./browser.js";
 import type { PrecioScrapeado } from "./types.js";
 
+const VTEX_ACCOUNT = "cruzverdefarmacia";
+const BASE = `https://${VTEX_ACCOUNT}.vtexcommercestable.com.br`;
 const CADENA = "cruzverdefarmacia";
 
-interface CvProduct {
-  name?: string;
-  productName?: string;
-  items?: { sellers?: { commertialOffer?: { Price?: number; ListPrice?: number; IsAvailable?: boolean } }[] }[];
-  offers?: { price?: number; priceCurrency?: string }[];
-  price?: number;
+interface VtexOffer {
+  Price: number;
+  ListPrice: number;
+  IsAvailable: boolean;
+}
+interface VtexProduct {
+  productName: string;
+  link: string;
+  items: { sellers: { commertialOffer: VtexOffer }[] }[];
 }
 
 export async function scrapeCV(query: string): Promise<PrecioScrapeado[]> {
-  const context = await newContext();
-  const page = await context.newPage();
-  const results: PrecioScrapeado[] = [];
+  const url = `${BASE}/api/catalog_system/pub/products/search/${encodeURIComponent(query)}?_from=0&_to=5`;
 
-  try {
-    // Intercepta respuestas JSON con productos/precios
-    page.on("response", async (response) => {
-      const url = response.url();
-      const ct = response.headers()["content-type"] ?? "";
-      if (!ct.includes("json")) return;
+  const res = await fetch(url, {
+    headers: {
+      "User-Agent": "Mozilla/5.0 (compatible; KeiroPriceBot/1.0)",
+      Accept: "application/json",
+      "X-VTEX-API-AppKey": "",
+    },
+    signal: AbortSignal.timeout(15_000),
+  });
 
-      // Captura respuestas de búsqueda VTEX u otras APIs internas
-      if (
-        url.includes("/products/search") ||
-        url.includes("/search?q=") ||
-        url.includes("fullText=") ||
-        url.includes("/catalog_system")
-      ) {
-        try {
-          const data = await response.json();
-          const products: CvProduct[] = Array.isArray(data) ? data : data?.products ?? data?.data ?? [];
-          for (const p of products.slice(0, 5)) {
-            const offer = p.items?.[0]?.sellers?.[0]?.commertialOffer;
-            const precio = offer?.Price ?? p.price ?? 0;
-            if (precio > 0) {
-              results.push({
-                query,
-                nombre_producto: p.productName ?? p.name ?? query,
-                precio: Math.round(precio),
-                precio_normal:
-                  offer?.ListPrice && offer.ListPrice > precio
-                    ? Math.round(offer.ListPrice)
-                    : undefined,
-                stock: offer?.IsAvailable ?? true,
-                url: page.url(),
-                cadena: CADENA,
-              });
-            }
-          }
-        } catch {
-          // respuesta no parseable, ignorar
-        }
-      }
-    });
-
-    await page.goto(
-      `https://www.cruzverdefarmacia.cl/buscar?q=${encodeURIComponent(query)}`,
-      { waitUntil: "networkidle", timeout: 20_000 }
-    );
-
-    // Si no se capturó nada por red, intentar extraer del DOM
-    if (results.length === 0) {
-      const precios = await page.$$eval(
-        "[class*='price'], [class*='Price'], [data-testid*='price']",
-        (els) =>
-          els
-            .map((el) => el.textContent?.replace(/[^\d]/g, ""))
-            .filter(Boolean)
-            .map(Number)
-            .filter((n) => n > 100 && n < 500_000)
-      );
-      if (precios.length > 0) {
-        results.push({
-          query,
-          nombre_producto: query,
-          precio: Math.min(...precios),
-          stock: true,
-          url: page.url(),
-          cadena: CADENA,
-        });
-      }
-    }
-  } catch (e) {
-    console.warn(`[cruz-verde] Error scraping "${query}":`, (e as Error).message);
-  } finally {
-    await context.close();
+  if (!res.ok) {
+    console.warn(`[cruz-verde] HTTP ${res.status} para "${query}"`);
+    return [];
   }
 
-  return results;
+  const products: VtexProduct[] = await res.json();
+
+  return products
+    .map((p) => {
+      const offer = p.items?.[0]?.sellers?.[0]?.commertialOffer;
+      if (!offer || offer.Price <= 0) return null;
+      return {
+        query,
+        nombre_producto: p.productName,
+        precio: Math.round(offer.Price),
+        precio_normal: offer.ListPrice > offer.Price ? Math.round(offer.ListPrice) : undefined,
+        stock: offer.IsAvailable,
+        url: `https://www.cruzverdefarmacia.cl${p.link}`,
+        cadena: CADENA,
+      } satisfies PrecioScrapeado;
+    })
+    .filter((p): p is PrecioScrapeado => p !== null);
 }

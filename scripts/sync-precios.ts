@@ -6,18 +6,16 @@
  * GitHub Actions: se ejecuta diariamente a las 6am UTC (3am Chile)
  */
 import { db } from "./db.js";
-import { scrapeCV } from "./scrapers/cruz-verde.js";
-import { scrapeSalcobrand } from "./scrapers/salcobrand.js";
-import { scrapeAhumada } from "./scrapers/ahumada.js";
 import { scrapeDrSimi } from "./scrapers/dr-simi.js";
-import { closeBrowser } from "./scrapers/browser.js";
+// Cruz Verde, Salcobrand y Ahumada bloquean tráfico externo — pendiente solución
+// import { scrapeCV } from "./scrapers/cruz-verde.js";
+// import { scrapeSalcobrand } from "./scrapers/salcobrand.js";
+// import { scrapeAhumada } from "./scrapers/ahumada.js";
 import type { PrecioScrapeado } from "./scrapers/types.js";
 
 const SCRAPERS: Record<string, (q: string) => Promise<PrecioScrapeado[]>> = {
-  cruzverdefarmacia: scrapeCV,
-  salcobrand: scrapeSalcobrand,
-  ahumada: scrapeAhumada,
   drsimi: scrapeDrSimi,
+  // Cruz Verde, Salcobrand y Ahumada: pendiente de acceso
 };
 
 /** Pausa entre requests para no saturar los servidores */
@@ -106,7 +104,6 @@ async function main() {
   }
 
   console.log(`=== Sync completado: ${actualizados} precios actualizados, ${errores} errores`);
-  await closeBrowser();
 }
 
 main();
